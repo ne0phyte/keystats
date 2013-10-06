@@ -1,13 +1,14 @@
 VERSION = 0.01
-CC      = /usr/bin/gcc
-CFLAGS  = -Wall -g -DVERSION=\"$(VERSION)\"
+CC = gcc
+
+TARGET = keystats
+CFLAGS  = -g -Wall -DVERSION=\"$(VERSION)\"
 LDFLAGS = -lX11
 
-OBJ = keystats.o
-OUTPUT = keystats
+all: $(TARGET)
 
-all: $(OBJ)
-        $(CC) $(CFLAGS) -o $(keystats) $(OBJ) $(LDFLAGS)
+$(TARGET): $(TARGET).c
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $(TARGET) $(TARGET).c
 
-%.o: %.c
-        $(CC) $(CFLAGS) -c $<
+clean:
+	$(RM) $(TARGET)
